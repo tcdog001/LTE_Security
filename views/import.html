@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+  	<head>
+    	<title>导入- LTE防盗系统</title>
+		<link rel="shortcut icon"  />
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    	<link href="/static/css/bootstrap.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<div class="navbar navbar-default navbar-fixed-top">
+			<div class="container">
+				<a class="navbar-brand">logo图片</a>
+				<div>
+					<ul class="nav navbar-nav">
+						<li ><a href="/home">首页</a></li>
+						<li><a href="/noregister">未注册设备</a></li>
+						<li class="active"><a href="/import">导入设备</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div style="width: 500px;padding-top: 15%" align="center">
+			<form accept-charset="gb2312"   enctype="multipart/form-data" action="/import"  method="POST" >
+
+				<div class="form-group">
+					{{if .IsImported}}
+					{{else}}
+						<label id="IsImported" name="IsImported" readonly="readonly" >
+							<font color="red">导入失败,请确认mac地址格式或者是否重复导入 </font>
+						</label>
+					{{end}}
+				</div>
+
+				<div>
+					<table>
+						<font size="5px">请选择要导入的EXCEL文件</font>
+					</table>
+				</div>
+
+				<p></p>
+
+				<div>
+					<input type="file" id="file" name="file" accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+				</div>
+
+				<p></p>
+				<div>
+					<button type="submit" class="btn btn-default" onclick="return CheckInput();">导入</button>
+					<script type="text/javascript">
+				      		function CheckInput() {
+				      			var filename = document.getElementById("file");
+				      			if (filename.value.length == 0) {
+				      				alert("请选择导入的EXCEL文件后再导入");
+				      				return false;
+				      			}
+							return true;
+				      		}
+			      		</script>
+				</div>
+			</form>
+		</div>
+	</body>
+
+</html>

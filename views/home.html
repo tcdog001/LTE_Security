@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html>
+  	<head>
+    	<title>首页 - LTE防盗系统</title>
+		<link rel="shortcut icon"  />
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    	<link href="/static/css/bootstrap.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<div class="navbar navbar-default navbar-fixed-top">
+			<div class="container">
+				<a class="navbar-brand">logo图片</a>
+				<div>
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="/home">首页</a></li>
+						<li><a href="/noregister">未注册设备</a></li>
+						<li><a href="/import">导入设备</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div style="visibility: hidden">
+			<p> 显示设备信息 </p>
+			<p> 显示设备信息</p>
+		</div>
+
+		<div>
+		<tr>
+			<td>
+			<div class="rich-panel ">
+				<div >
+					<table style="width:100%;" border="1">
+					<tbody>
+						<tr>
+							<td class="col1" align="right" style="font-size: 20px">每页显示:
+								<a href="/home?listcount=10" id="10" name="10" style="text-decoration:none">10</a>
+								<a href="/home?listcount=20" id="20" name="20" style="text-decoration:underline">20</a>
+								<a href="/home?listcount=30" id="30" name="30" style="text-decoration:underline">30</a>
+								条
+							</td>
+						</tr>
+					</tbody>
+					</table>
+				</div>
+			</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+			<div class="rich-panel ">
+				<div >
+					<table style="width:100%;" border="1">
+					<tbody>
+						<tr>
+							<td class="col1" align="center" style="font-size: 25px">
+								<font color="red">{{.NoInfo}}</font>
+							</td>
+						</tr>
+					</tbody>
+					</table>
+				</div>
+			</div>
+			</td>
+		</tr>
+
+		<table class="table  table-striped" border="1">
+				<thead>
+					<tr>
+						<th>Mac地址</th>
+						<th>Guid</th>
+						<th>Mid</th>
+						<th>Psn</th>
+						<th>导入时间</th>
+						<th>失效时间</th>
+						<th>注册时间</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					{{range .Devices}}
+					<tr>
+						<th>{{.Mac}}</th>
+						<th>{{.Guid}}</th>
+						<th>{{.Mid}}</th>
+						<th>{{.Psn}}</th>
+						<th>{{.ImportTime}}</th>
+						<th>{{.InvalidTime}}</th>
+						<th>{{.RegistrationTime}}</th>
+					</tr>
+					{{end}}
+				</tbody>
+			</table>
+		</div>
+
+		<div>
+			<tfoot>
+					<tr>
+						第{{.CurPage}}页，共{{.TotalPages}}页，共{{.DevicesNum}}条
+					</tr>
+			</tfoot>
+		</div>
+
+		<div align="center">
+			<td style="font-size:20px" >
+				<a href="/home?op=firstpage">首页</a>
+				<a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+				<a href="/home?op=prepage">上一页</a>
+				<a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+				<a href="/home?op=nextpage">下一页</a>
+				<a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+				<a href="/home?op=lastpage">尾页</a>
+			</td>
+		</div>
+	</body>
+
+</html>
